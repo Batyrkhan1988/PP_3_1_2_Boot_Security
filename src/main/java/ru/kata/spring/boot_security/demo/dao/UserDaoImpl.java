@@ -9,7 +9,7 @@ import java.util.List;
 
 
 @Repository
-public class UserDaoImp implements UserDao {
+public class UserDaoImpl implements UserDao {
 
     @PersistenceContext
     private EntityManager entityManager;
@@ -39,6 +39,14 @@ public class UserDaoImp implements UserDao {
     @Override
     public User getUserById(Long id) {
         return getEntityManager().find(User.class, id);
+    }
+
+    @Override
+    public User getUserByEmail(String email) {
+        User user = (User) getEntityManager()
+                .createQuery("from User where email=" + email)
+                .getSingleResult();
+        return user;
     }
 
     @Override
