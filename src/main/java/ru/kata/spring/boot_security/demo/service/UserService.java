@@ -11,7 +11,7 @@ public interface UserService {
 
     void deleteUser(Long id);
 
-    void editUser(User user);
+    void editUser(User user, List<String> roles);
 
     User getUserById(Long id);
 

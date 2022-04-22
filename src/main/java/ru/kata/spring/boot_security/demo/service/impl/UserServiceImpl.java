@@ -46,8 +46,10 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void editUser(User user) {
-        userDao.editUser(user);
+    public void editUser(User user, List<String> roles) {
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        user.getRoles().addAll(getRoles(roles));
+        userDao.addUser(user);
     }
 
     @Override
